@@ -17,8 +17,6 @@ class TelegramBot(object):
     for msg in conversationMessages:
       if msg.message.chat_id not in self.chatIdList:
         self.chatIdList.append(msg.message.chat_id)
-    self.concurrentMsg = 0
-    self.CURRENT_MINUTE = -1
 
   def sendMsg(self, id, message):
     if not id:
