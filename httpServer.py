@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
 import optparse
-import httpWrapper
+from  modules import httpWrapper
 from multiprocessing import cpu_count
-from _api import TelegramBot, MsgSender
-from app import queue
+from modules._api import TelegramBot, MsgSender
+from modules.app import queue
 
 # Telegram bot api token
-TELEGRAM_TOKEN = '' 
+TELEGRAM_TOKEN = ''
 
 def main():
 
