@@ -4,16 +4,14 @@ import gevent.monkey
 from datetime import datetime
 import threading
 import time
+
 gevent.monkey.patch_socket()
 gevent.monkey.patch_ssl()
 gevent.monkey.patch_all()
 
-# ambient Bot telegram api token
-TELEGRAM_TOKEN = '190093517:AAHNUmk_ockALEMU-Ud_oUA2Lb5sReAj8rM'
-
-class AmbientBot(object):
-  def __init__(self):
-    self.connection = telegram.Bot(token = TELEGRAM_TOKEN)
+class TelegramBot(object):
+  def __init__(self, _token):
+    self.connection = telegram.Bot(token = _token)
     conversationMessages = self.connection.getUpdates()
     self.chatIdList = []
     for msg in conversationMessages:

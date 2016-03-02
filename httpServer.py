@@ -3,8 +3,11 @@
 import optparse
 import httpWrapper
 from multiprocessing import cpu_count
-from _api import AmbientBot, MsgSender
+from _api import TelegramBot, MsgSender
 from app import queue
+
+# Telegram bot api token
+TELEGRAM_TOKEN = '' 
 
 def main():
 
@@ -34,8 +37,8 @@ def main():
     options, args = parser.parse_args()
 
     print 'Initialized stuff...'
-    ambientBot = AmbientBot()
-    msgSender  = MsgSender(ambientBot, queue)
+    telegramBot = TelegramBot(TELEGRAM_TOKEN)
+    msgSender  = MsgSender(telegramBot, queue)
     msgSender.start()
     print 'Starting %s processes, listen on %s:%d ' % (options.number_of_processes, options.host, options.port)
     httpserver = httpWrapper.HTTPServer(options.host, options.port, options.number_of_processes, options.logfile, options.verbose, options.workdir)
