@@ -7,7 +7,7 @@ from modules.api import TelegramBot, MsgSender
 from modules.app import queue
 
 # Telegram bot api token
-TELEGRAM_TOKEN = '189424082:AAHH60rihnKYc2KDaaJFntYDt9gJjRMVPmU'
+TELEGRAM_TOKEN = ''
 
 def main():
 
