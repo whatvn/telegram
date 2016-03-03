@@ -37,11 +37,12 @@ def main():
     options, args = parser.parse_args()
 
     print 'Initialized stuff...'
+    #httpwrapper.setup_logging(options.logfile, options.verbose, options.workdir)
+    print 'Starting %s processes, listen on %s:%d ' % (options.number_of_processes, options.host, options.port)
+    httpserver = httpwrapper.HTTPServer(options.host, options.port, options.number_of_processes, options.logfile, options.verbose, options.workdir)
     telegramBot = TelegramBot(TELEGRAM_TOKEN)
     msgSender  = MsgSender(telegramBot, queue)
     msgSender.start()
-    print 'Starting %s processes, listen on %s:%d ' % (options.number_of_processes, options.host, options.port)
-    httpserver = httpwrapper.HTTPServer(options.host, options.port, options.number_of_processes, options.logfile, options.verbose, options.workdir)
     httpserver.start()
 
 if __name__ == '__main__':
