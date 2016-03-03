@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
 import optparse
-from  modules import httpWrapper
+from  modules import httpwrapper
 from multiprocessing import cpu_count
-from modules._api import TelegramBot, MsgSender
+from modules.api import TelegramBot, MsgSender
 from modules.app import queue
 
 # Telegram bot api token
-TELEGRAM_TOKEN = ''
+TELEGRAM_TOKEN = '189424082:AAHH60rihnKYc2KDaaJFntYDt9gJjRMVPmU'
 
 def main():
 
@@ -41,7 +41,7 @@ def main():
     msgSender  = MsgSender(telegramBot, queue)
     msgSender.start()
     print 'Starting %s processes, listen on %s:%d ' % (options.number_of_processes, options.host, options.port)
-    httpserver = httpWrapper.HTTPServer(options.host, options.port, options.number_of_processes, options.logfile, options.verbose, options.workdir)
+    httpserver = httpwrapper.HTTPServer(options.host, options.port, options.number_of_processes, options.logfile, options.verbose, options.workdir)
     httpserver.start()
 
 if __name__ == '__main__':

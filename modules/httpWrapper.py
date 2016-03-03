@@ -1,14 +1,18 @@
 
 from gevent.pywsgi import WSGIServer
-from gevent.monkey import patch_all
-patch_all()
+import gevent.monkey
 import gevent
-import _api
+import api
 from app import app
 from multiprocessing import Process, current_process
 import logging
 import os
 import sys
+
+gevent.monkey.patch_socket()
+gevent.monkey.patch_ssl()
+gevent.monkey.patch_all()
+
 
 
 __version__ = "Simplest HTTP Server/v0.1"
