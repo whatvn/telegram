@@ -15,6 +15,7 @@ def apiHandler():
   try:
     logger.info('receive request')
     chat_id = None
+    data = {}
     if request.form.has_key('id'):
       chat_id = request.form['id']
     if request.form.has_key('msg'):
@@ -22,9 +23,11 @@ def apiHandler():
     if text:
       queue.put([chat_id, text])
       data = {'id' : chat_id, 'msg' : text}
-      resp = make_response(json.dumps(data))
-      resp.headers.set('Server', httpwrapper.__version__)
-      resp.headers.set('Content-Type', 'application/json')
-      return resp
+    else:
+      data = {'err' : 1, 'msg' : 'please provide message content'}
+    resp = make_response(json.dumps(data))
+    resp.headers.set('Server', httpwrapper.__version__)
+    resp.headers.set('Content-Type', 'application/json')
+    return resp
   except Exception, ex:
     print ex
